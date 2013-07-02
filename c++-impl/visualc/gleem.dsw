@@ -1,0 +1,104 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "TestExaminerViewer"=".\TestExaminerViewer.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name gleemdll
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "TestHandleBox"=".\TestHandleBox.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name gleemdll
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "TestMultiWin"=".\TestMultiWin.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name gleemdll
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "TestTranslate1"=".\TestTranslate1.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name gleemdll
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "TestTranslate2"=".\TestTranslate2.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name gleemdll
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "gleemdll"=".\gleemdll.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+
