@@ -4,7 +4,7 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <gleem/MathUtil.h>
+#include "../include/MathUtil.h"
 
 GLEEM_USE_NAMESPACE
 

@@ -11,9 +11,9 @@
 #include <GL/glut.h>
 #include <iostream>
 #include <algo.h>
-#include <gleem/ManipManager.h>
-#include <gleem/RightTruncPyrMapping.h>
-#include <gleem/Manip.h>
+#include "../include/ManipManager.h"
+#include "../include/RightTruncPyrMapping.h"
+#include "../include/Manip.h"
 
 GLEEM_USE_NAMESPACE
 

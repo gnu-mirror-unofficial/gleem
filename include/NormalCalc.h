@@ -7,7 +7,7 @@
 #ifndef _GLEEM_NORMAL_CALC_H
 #define _GLEEM_NORMAL_CALC_H
 
-#include <bool.h>
+
 #include <gleem/Namespace.h>
 #include <gleem/GleemDLL.h>
 #include <gleem/Util.h>

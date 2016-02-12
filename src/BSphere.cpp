@@ -5,8 +5,8 @@
  */
 
 #include <assert.h>
-#include <gleem/BSphere.h>
-#include <gleem/MathUtil.h>
+#include "../include/BSphere.h"
+#include "../include/MathUtil.h"
 
 GLEEM_USE_NAMESPACE
 

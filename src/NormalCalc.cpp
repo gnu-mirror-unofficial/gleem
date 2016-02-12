@@ -5,7 +5,7 @@
  */
 
 #include <iostream>
-#include <gleem/NormalCalc.h>
+#include "../include/NormalCalc.h"
 
 GLEEM_USE_NAMESPACE
 

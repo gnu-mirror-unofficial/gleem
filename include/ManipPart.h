@@ -7,7 +7,7 @@
 #ifndef _GLEEM_MANIP_PART_H
 #define _GLEEM_MANIP_PART_H
 
-#include <bool.h>
+
 #include <vector.h>
 #include <gleem/Namespace.h>
 #include <gleem/GleemDLL.h>

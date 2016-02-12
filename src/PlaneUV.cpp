@@ -4,9 +4,9 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <math.h>
-#include <gleem/PlaneUV.h>
-#include <gleem/MathUtil.h>
+#include <cmath>
+#include "../include/PlaneUV.h"
+#include "../include/MathUtil.h"
 
 GLEEM_USE_NAMESPACE
 

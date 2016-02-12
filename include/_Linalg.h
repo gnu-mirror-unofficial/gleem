@@ -9,7 +9,7 @@
 
 #include <gleem/GleemDLL.h>
 #include <iostream>
-#include <bool.h>
+
 
 class _GleemRot;
 class _GleemMat4f;

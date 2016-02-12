@@ -7,7 +7,7 @@
 #ifndef _GLEEM_LINE_H
 #define _GLEEM_LINE_H
 
-#include <bool.h>
+
 #include <gleem/Namespace.h>
 #include <gleem/GleemDLL.h>
 #include <gleem/Util.h>

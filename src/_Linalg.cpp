@@ -5,8 +5,8 @@
  */
 
 #include <assert.h>
-#include <math.h>
-#include <gleem/_Linalg.h>
+#include <cmath>
+#include "../include/_Linalg.h"
 #include <memory.h>
 
 // Can you believe Microsoft?

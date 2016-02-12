@@ -9,8 +9,8 @@
 # include <windows.h>
 #endif
 #include <GL/gl.h>
-#include <gleem/ManipPartTriBased.h>
-#include <gleem/RayTriangleIntersection.h>
+#include "../include/ManipPartTriBased.h"
+#include "../include/RayTriangleIntersection.h"
 
 GLEEM_USE_NAMESPACE
 

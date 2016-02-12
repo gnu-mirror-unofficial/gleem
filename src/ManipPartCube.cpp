@@ -4,8 +4,8 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <gleem/ManipPartCube.h>
-#include <gleem/NormalCalc.h>
+#include "../include/ManipPartCube.h"
+#include "../include/NormalCalc.h"
 
 GLEEM_USE_NAMESPACE
 

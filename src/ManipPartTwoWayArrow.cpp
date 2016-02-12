@@ -4,8 +4,8 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <gleem/ManipPartTwoWayArrow.h>
-#include <gleem/NormalCalc.h>
+#include "../include/ManipPartTwoWayArrow.h"
+#include "../include/NormalCalc.h"
 
 GLEEM_USE_NAMESPACE
 

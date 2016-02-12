@@ -4,7 +4,7 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <math.h>
+#include <cmath>
 #include <stdlib.h>
 #include <iostream>
 #include <assert.h>
@@ -14,8 +14,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include <gleem/ExaminerViewer.h>
-#include <gleem/MathUtil.h>
+#include "../include/ExaminerViewer.h"
+#include "../include/MathUtil.h"
 
 GLEEM_USE_NAMESPACE
 

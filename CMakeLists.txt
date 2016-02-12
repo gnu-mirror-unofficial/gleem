@@ -1,32 +1,45 @@
-cmake_minimum_required(VERSION 2.8.11)
-project(gleem)
-
-# State directories for modules and binaries
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
+cmake_minimum_required(VERSION 2.8)
+# Project Name
+PROJECT(gleem)
 
 #Making the compiler as strict as possible
 set(CMAKE_CXX_FLAGS "-std=c++14 -fno-elide-constructors -pedantic-errors -Werror -Wextra -Wall -Wpedantic -Winit-self -Wmissing-declarations -Wuninitialized -Woverloaded-virtual -Wold-style-cast -Wfatal-errors -O3")
 add_definitions(${CMAKE_CXX_FLAGS})
 
-#Location of source filesfind_package(SDL2 REQUIRED)
-file(GLOB SOURCE src/*.cpp include/*.hpp)
+#########################################################
+# FIND GLUT
+#########################################################
+find_package(GLUT REQUIRED)
+include_directories(${GLUT_INCLUDE_DIRS})
+link_directories(${GLUT_LIBRARY_DIRS})
+add_definitions(${GLUT_DEFINITIONS})
+if(NOT GLUT_FOUND)
+  message(ERROR " GLUT not found!")
+endif(NOT GLUT_FOUND)
 
-# Find dependencies
+#########################################################
+# FIND OPENGL
+#########################################################
 find_package(OpenGL REQUIRED)
-find_package(GLUT)
+include_directories(${OpenGL_INCLUDE_DIRS})
+link_directories(${OpenGL_LIBRARY_DIRS})
+add_definitions(${OpenGL_DEFINITIONS})
+if(NOT OPENGL_FOUND)
+  message(ERROR " OPENGL not found!")
+endif(NOT OPENGL_FOUND)
 
-# Specify include directories
-include_directories(
-  ${GLUT_INCLUDE_DIR}
-  ${OpenGL_INCLUDE_DIR}
-  )
 
-# Create the binary
+file(GLOB SOURCE src/*.cpp include/*.h)
+
+
+#########################################################
+# Include Files
+#########################################################
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE})
 
-# Link the libraries
-target_link_libraries(${CMAKE_PROJECT_NAME}
-  ${GLUT_LIBRARIES}
-  ${OpenGL_LIBRARIES}
-  )
+########################################################
+# Linking & stuff
+#########################################################
+
+# create the program "test"
+target_link_libraries(${CMAKE_PROJECT_NAME} ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} )

@@ -5,7 +5,7 @@
  */
 
 #include <iostream>
-#include <gleem/Line.h>
+#include "../include/Line.h"
 
 GLEEM_USE_NAMESPACE
 

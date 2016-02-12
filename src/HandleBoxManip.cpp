@@ -4,17 +4,17 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <math.h>
+#include <cmath>
 #ifdef WIN32
 # include <windows.h>
 #endif
 #include <GL/glut.h>
-#include <gleem/HandleBoxManip.h>
-#include <gleem/ManipPartTransform.h>
-#include <gleem/ManipPartCube.h>
-#include <gleem/ManipPartLineSeg.h>
-#include <gleem/ManipPartSquare.h>
-#include <gleem/MathUtil.h>
+#include "../include/HandleBoxManip.h"
+#include "../include/ManipPartTransform.h"
+#include "../include/ManipPartCube.h"
+#include "../include/ManipPartLineSeg.h"
+#include "../include/ManipPartSquare.h"
+#include "../include/MathUtil.h"
 
 GLEEM_USE_NAMESPACE
 

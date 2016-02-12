@@ -4,7 +4,7 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <gleem/ManipPart.h>
+#include "../include/ManipPart.h"
 
 GLEEM_USE_NAMESPACE
 

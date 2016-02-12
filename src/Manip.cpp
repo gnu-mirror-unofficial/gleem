@@ -10,8 +10,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include <gleem/Manip.h>
-#include <gleem/ManipManager.h>
+#include "../include/Manip.h"
+#include "../include/ManipManager.h"
 
 GLEEM_USE_NAMESPACE
 
