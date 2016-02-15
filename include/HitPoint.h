@@ -7,10 +7,10 @@
 #ifndef _GLEEM_HIT_POINT_H
 #define _GLEEM_HIT_POINT_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -21,7 +21,7 @@ class ManipPart;
 
 class GLEEMDLL HitPoint
 {
-public:
+ public:
   /** The manipulator which was intersected */
   Manip *manipulator;
 

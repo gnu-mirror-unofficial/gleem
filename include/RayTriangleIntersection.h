@@ -7,16 +7,16 @@
 #ifndef _GLEEM_RAY_TRIANGLE_INTERSECTION_H
 #define _GLEEM_RAY_TRIANGLE_INTERSECTION_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL RayTriangleIntersection
 {
-public:
+ public:
   // Apparently Windows defines ERROR as a preprocessor macro...sigh...
   typedef enum
   {
@@ -41,7 +41,7 @@ public:
 					     GleemV3f &intersectionPt,
 					     float &t);
 
-private:
+ private:
   static bool approxOnSameSide(GleemV2f &linePt1, GleemV2f &linePt2,
 			       GleemV2f &testPt1, GleemV2f &testPt2);
 };

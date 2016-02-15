@@ -8,13 +8,13 @@
 #define _GLEEM_EXAMINER_VIEWER_H
 
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/CameraParameters.h>
-#include <gleem/BSphere.h>
-#include <gleem/BasicHashtable.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "CameraParameters.h"
+#include "BSphere.h"
+#include "BasicHashtable.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -41,7 +41,7 @@ GLEEM_ENTER_NAMESPACE
 
 class GLEEMDLL ExaminerViewer
 {
-public:
+ public:
   /** Defaults to position (0, 0, 0), up vector (0, 1, 0), and forward
       vector (0, 0, -1). */
   ExaminerViewer();
@@ -98,7 +98,7 @@ public:
   /** Get the GLUT window ID associated with this viewer */
   int getWindowID() const;
 
-protected:
+ protected:
   void init(int windowID);
 
   static void mouseFunc(int button, int state, int x, int y);

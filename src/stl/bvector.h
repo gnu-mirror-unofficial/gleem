@@ -28,14 +28,13 @@
 #define __SGI_STL_BVECTOR_H
 
 #ifdef __STL_CLASS_PARTIAL_SPECIALIZATION
-#include <vector.h>
+#include <vector>
 #else
-#include <algobase.h>
-#include <alloc.h>
+#include "algobase.h"
+#include "alloc.h"
 #endif 
 
-#include <stl_bvector.h>
-
+#include "stl_bvector.h"
 #ifdef __STL_USE_NAMESPACES
 
 using __STD::bit_vector;

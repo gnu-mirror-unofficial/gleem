@@ -7,11 +7,11 @@
 #ifndef _GLEEM_MANIP_PART_GROUP_H
 #define _GLEEM_MANIP_PART_GROUP_H
 
-#include <vector.h>
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/ManipPart.h>
+#include <vector>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "ManipPart.h"
 
 GLEEM_ENTER_NAMESPACE
 

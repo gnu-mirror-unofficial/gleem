@@ -8,11 +8,11 @@
 #define _GLEEM_MATH_UTIL_H
 
 
-#include <math.h>
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Linalg.h>
+#include <cmath>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -20,7 +20,7 @@ GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL MathUtil
 {
-public:
+ public:
   // Finds a vector perpendicular to the one passed in and returns it
   // in DST. Does not work if source vector is (0, 0, 0); returns
   // false in this case.

@@ -7,10 +7,10 @@
 #ifndef _GLEEM_MANIP_PART_TWO_WAY_ARROW_H
 #define _GLEEM_MANIP_PART_TWO_WAY_ARROW_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/ManipPartTriBased.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "ManipPartTriBased.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -20,10 +20,10 @@ GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL ManipPartTwoWayArrow : public ManipPartTriBased
 {
-public:
+ public:
   ManipPartTwoWayArrow(Manip *parent);
   virtual ~ManipPartTwoWayArrow();
-private:
+ private:
   static float verticesAsFloats[][3];
   static GleemV3f *vertices;
   static int numVertices;

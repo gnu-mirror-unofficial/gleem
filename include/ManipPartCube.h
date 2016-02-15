@@ -7,10 +7,10 @@
 #ifndef _GLEEM_MANIP_PART_CUBE_H
 #define _GLEEM_MANIP_PART_CUBE_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/ManipPartTriBased.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "ManipPartTriBased.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -19,11 +19,11 @@ GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL ManipPartCube : public ManipPartTriBased
 {
-public:
+ public:
   ManipPartCube(Manip *parent);
   virtual ~ManipPartCube();
 
-private:
+ private:
   static float verticesAsFloats[][3];
   static GleemV3f *vertices;
   static int numVertices;

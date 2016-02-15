@@ -110,9 +110,9 @@ ExaminerViewer::viewAll()
 {
   if (provider == NULL)
     {
-      cerr << "gleem::ExaminerViewer::viewAll: ERROR: "
+      std::cerr << "gleem::ExaminerViewer::viewAll: ERROR: "
 	   << "bounding sphere provider was NULL, so I don't know how "
-	   << "big the scene is" << endl;
+	   << "big the scene is" << std::endl;
       return;
     }
   // Figure out how far to move
@@ -125,8 +125,8 @@ ExaminerViewer::viewAll()
     minFOV = horizFOV;
   if (minFOV == 0.0f)
     {
-      cerr << "gleem::ExaminerViewer::viewAll: ERROR: "
-	   << "minimum field of view was zero!" << endl;
+      std::cerr << "gleem::ExaminerViewer::viewAll: ERROR: "
+	   << "minimum field of view was zero!" << std::endl;
       return;
     }
   const BSphere &bsph = provider->getBoundingSphere();
@@ -407,10 +407,10 @@ ExaminerViewer::recalc()
   orientation.rotateVector(GleemV3f(0, 0, -1), params.forwardDirection);
   orientation.rotateVector(GleemV3f(0, 1, 0), params.upDirection);
 
-  //  cerr << "params.position: " << params.position << endl;
-  //  cerr << "params.forwardDirection: " << params.forwardDirection << endl;
-  //  cerr << "params.upDirection: " << params.upDirection << endl;
-  //  cerr << "focalDist: " << focalDist << endl;
+  //  std::cerr << "params.position: " << params.position << std::endl;
+  //  std::cerr << "params.forwardDirection: " << params.forwardDirection << std::endl;
+  //  std::cerr << "params.upDirection: " << params.upDirection << std::endl;
+  //  std::cerr << "focalDist: " << focalDist << std::endl;
 
   // Compute modelview matrix based on camera parameters, position and
   // orientation

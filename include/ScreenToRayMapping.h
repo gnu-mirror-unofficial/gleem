@@ -7,11 +7,11 @@
 #ifndef _GLEEM_SCREEN_TO_RAY_MAPPING_H
 #define _GLEEM_SCREEN_TO_RAY_MAPPING_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/CameraParameters.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "CameraParameters.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -34,7 +34,7 @@ GLEEM_ENTER_NAMESPACE
 
 class GLEEMDLL ScreenToRayMapping
 {
-public:
+ public:
   virtual void mapScreenToRay(const GleemV2f &screenCoords,
 			      const CameraParameters &params,
 			      GleemV3f &raySource,

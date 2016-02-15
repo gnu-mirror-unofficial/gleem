@@ -27,14 +27,14 @@
 #ifndef __SGI_STL_ALGO_H
 #define __SGI_STL_ALGO_H
 
-#include <algobase.h>
-#include <tempbuf.h>
-#include <stl_algo.h>
-#include <stl_numeric.h>
+#include "algobase.h"
+#include "tempbuf.h"
+#include "stl_algo.h"
+#include "stl_numeric.h"
 
 #ifdef __STL_USE_NAMESPACES
 
-// Names from <stl_algo.h>
+// Names from <stl_algo.h"
 using __STD::for_each; 
 using __STD::find; 
 using __STD::find_if; 

@@ -7,10 +7,10 @@
 #ifndef _GLEEM_BSPHERE_H
 #define _GLEEM_BSPHERE_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -19,7 +19,7 @@ GLEEM_ENTER_NAMESPACE
 
 class GLEEMDLL BSphere
 {
-public:
+ public:
   /** Default constructor creates a sphere with center (0, 0, 0) and
       radius 0 */
   BSphere();
@@ -54,7 +54,7 @@ public:
 		    GleemV3f &intPt1,
 		    float &t1) const;
 
-private:
+ private:
   GleemV3f center;
   float radius;
   float radSq;

@@ -50,9 +50,9 @@
 #define __MBSTRING_H
 
 #include <ctype.h>
-#include <string.h>
+#include <string>
 #include <iostream>
-#include <hashtable.h>
+#include "hashtable.h"
 
 #ifdef _SGITHREADS
 #include <mutex.h>

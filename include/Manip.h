@@ -7,13 +7,13 @@
 #ifndef _GLEEM_MANIP_H
 #define _GLEEM_MANIP_H
 
-#include <vector.h>
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/HitPoint.h>
-#include <gleem/ManipPart.h>
-#include <gleem/Linalg.h>
+#include <vector>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "HitPoint.h"
+#include "ManipPart.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 

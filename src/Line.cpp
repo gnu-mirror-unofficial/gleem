@@ -90,8 +90,8 @@ Line::recalc()
   float denom = direction.lengthSquared();
   if (denom == 0.0f)
     {
-      cerr << "gleem::Line::recalc: ERROR: direction was the zero vector "
-	   << "(not allowed)" << endl;
+      std::cerr << "gleem::Line::recalc: ERROR: direction was the zero vector "
+	   << "(not allowed)" << std::endl;
       return;
     }
   alongVec = point - (point.dot(direction) * direction);

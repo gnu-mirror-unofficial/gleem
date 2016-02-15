@@ -7,10 +7,10 @@
 #ifndef _GLEEM_MANIP_PART_LINE_SEG_H
 #define _GLEEM_MANIP_PART_LINE_SEG_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/ManipPart.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "ManipPart.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -18,7 +18,7 @@ GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL ManipPartLineSeg : public ManipPart
 {
-public:
+ public:
   ManipPartLineSeg(Manip *parent);
   virtual ~ManipPartLineSeg();
 
@@ -48,7 +48,7 @@ public:
   virtual void setVisible(bool visible);
   virtual bool getVisible() const;
 
-private:
+ private:
   void recalcVertices();
 
   GleemV3f color;

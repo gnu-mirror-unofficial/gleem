@@ -20,8 +20,8 @@ Manip::addMotionCallback(ManipCB *f, void *userData)
 {
   if (f == NULL)
     {
-      cerr << "Manip::addMotionCallback: ERROR: detected NULL callback function."
-	   << endl;
+      std::cerr << "Manip::addMotionCallback: ERROR: detected NULL callback function."
+	   << std::endl;
       return;
     }
   motionCallbacks.push_back(pair<ManipCB *, void *>(f, userData));

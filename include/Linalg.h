@@ -9,7 +9,7 @@
 
 #ifndef HAVE_VRML_API
 
-#include <gleem/_Linalg.h>
+#include "_Linalg.h"
 
 #define GleemV3f _GleemV3f
 #define GleemV2f _GleemV2f

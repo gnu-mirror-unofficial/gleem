@@ -7,10 +7,10 @@
 #ifndef _GLEEM_MANIP_PART_TRANSFORM_H
 #define _GLEEM_MANIP_PART_TRANSFORM_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/ManipPartGroup.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "ManipPartGroup.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -19,7 +19,7 @@ GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL ManipPartTransform : public ManipPartGroup
 {
-public:
+ public:
   ManipPartTransform(Manip *parent);
   virtual ~ManipPartTransform();
 
@@ -31,7 +31,7 @@ public:
   void setOffsetTransform(const GleemMat4f &offsetTransform);
   const GleemMat4f &getOffsetTransform() const;
 
-private:
+ private:
   GleemMat4f offsetTransform;
 };
 

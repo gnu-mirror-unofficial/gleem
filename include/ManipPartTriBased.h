@@ -7,12 +7,12 @@
 #ifndef _GLEEM_MANIP_PART_TRI_BASED_H
 #define _GLEEM_MANIP_PART_TRI_BASED_H
 
-#include <vector.h>
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Manip.h>
-#include <gleem/Linalg.h>
+#include <vector>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Manip.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -23,7 +23,7 @@ GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL ManipPartTriBased : public ManipPart
 {
-public:
+ public:
   ManipPartTriBased(Manip *parent);
   virtual ~ManipPartTriBased();
 
@@ -50,7 +50,7 @@ public:
   virtual void setVisible(bool visible);
   virtual bool getVisible() const;
 
-protected:
+ protected:
   /** Caller retains ownership of memory. */
   void setVertices(GleemV3f *vertices, int numVertices);
   GleemV3f *getVertices() const;
@@ -74,7 +74,7 @@ protected:
   int *getNormalIndices() const;
   int getNumNormalIndices() const;
 
-private:
+ private:
   void recalcVertices();
 
   GleemV3f color;

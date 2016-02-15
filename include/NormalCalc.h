@@ -8,10 +8,10 @@
 #define _GLEEM_NORMAL_CALC_H
 
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -20,7 +20,7 @@ GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL NormalCalc
 {
-public:
+ public:
   /** Returns newly allocated buffer of GleemV3f's which represent
       faceted (non-averaged) normals, but per-vertex, and newly
       allocated output normal index list. Both are allocated with

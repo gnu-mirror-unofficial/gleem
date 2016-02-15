@@ -12,13 +12,13 @@
 #ifndef _BASIC_HASHTABLE_H
 #define _BASIC_HASHTABLE_H
 
-#include <hashtable.h>
-#include <pair.h>
+#include "../src/stl/hashtable.h"
+#include "../src/stl/pair.h"
 
 template <class Value, class Key, class HashFcn>
-class BasicHashtable
+  class BasicHashtable
 {
-private:
+ private:
   typedef pair<Key, Value> KeyValuePair;
   typedef size_t HashFunc(const Key &);
   typedef Key    ExtractKeyFunc(const KeyValuePair &);
@@ -32,10 +32,10 @@ private:
   }
 
   typedef hashtable<KeyValuePair, Key, HashFcn,
-		    ExtractKeyFunc *, EqualFunc *> InternalHashtable;
+    ExtractKeyFunc *, EqualFunc *> InternalHashtable;
   InternalHashtable table;
 
-public:
+ public:
   class iterator
   {
   public:
@@ -61,8 +61,8 @@ public:
 
     friend class BasicHashtable<Value, Key, HashFcn>;
   private:
-    iterator(InternalHashtable::iterator iter) :
-      internalIter(iter) {}
+  iterator(InternalHashtable::iterator iter) :
+    internalIter(iter) {}
 
     InternalHashtable::iterator internalIter;
   };
@@ -92,15 +92,15 @@ public:
 
     friend class BasicHashtable<Value, Key, HashFcn>;
   private:
-    const_iterator(InternalHashtable::const_iterator iter) :
-      internalIter(iter) {}
+  const_iterator(InternalHashtable::const_iterator iter) :
+    internalIter(iter) {}
 
     InternalHashtable::const_iterator internalIter;
   };
 
-  BasicHashtable(size_t n,
-		 const HashFcn &hf) :
-    table(n, hf, &BasicHashtable::equals, &BasicHashtable::extractKey) {}
+ BasicHashtable(size_t n,
+		const HashFcn &hf) :
+  table(n, hf, &BasicHashtable::equals, &BasicHashtable::extractKey) {}
 
   size_t size() const { return table.size(); }
   size_t max_size() const { return table.max_size(); }
@@ -109,36 +109,36 @@ public:
   void swap(BasicHashtable& ht) { table.swap(ht.table); }
   
   iterator begin()
-    {
-      return iterator(table.begin());
-    }
+  {
+    return iterator(table.begin());
+  }
 
   iterator end()
-    {
-      return iterator(table.end());
-    }
+  {
+    return iterator(table.end());
+  }
 
   const_iterator begin() const
-    {
-      return const_iterator(table.begin());
-    }
+  {
+    return const_iterator(table.begin());
+  }
 
   const_iterator end() const
-    {
-      return const_iterator(table.end());
-    }
+  {
+    return const_iterator(table.end());
+  }
 
   friend bool
-  operator== __STL_NULL_TMPL_ARGS (const BasicHashtable&, const BasicHashtable&);
+    operator== __STL_NULL_TMPL_ARGS (const BasicHashtable&, const BasicHashtable&);
 
   size_t bucket_count() const { return table.bucket_count(); }
   
   size_t max_bucket_count() const { return table.max_bucket_count(); }
 
   size_t elems_in_bucket(size_t bucket) const
-    {
-      return table.elems_in_bucket(bucket);
-    }
+  {
+    return table.elems_in_bucket(bucket);
+  }
   
   pair<iterator, bool> insert_unique(const Key &key,
 				     const Value &val)
@@ -150,9 +150,9 @@ public:
   
   iterator insert_equal(const Key &key,
 			const Value &val)
-    {
-      return iterator(table.insert_equal(KeyValuePair(key, val)));
-    }
+  {
+    return iterator(table.insert_equal(KeyValuePair(key, val)));
+  }
   
   pair<iterator, bool> insert_unique_noresize(const Key &key,
 					      const Value &val)
@@ -164,9 +164,9 @@ public:
 
   iterator insert_equal_noresize(const Key &key,
 				 const Value &val)
-    {
-      return iterator(table.insert_equal_noresize(KeyValuePair(key, val)));
-    }
+  {
+    return iterator(table.insert_equal_noresize(KeyValuePair(key, val)));
+  }
 
   // FIXME: insertion with iterators elided because it is not clear
   // how useful they are (would require pointers to pair<Key, Value>
@@ -179,19 +179,19 @@ public:
     }
 
   iterator find(const Key &key)
-    {
-      return iterator(table.find(key));
-    }
+  {
+    return iterator(table.find(key));
+  }
   
   const_iterator find(const Key &key) const
-    {
-      return const_iterator(table.find(key));
-    }
+  {
+    return const_iterator(table.find(key));
+  }
   
   size_t count(const Key &key) const
-    {
-      return table.count(key);
-    }
+  {
+    return table.count(key);
+  }
 
   pair<iterator, iterator> equal_range(const Key &key)
     {
@@ -208,39 +208,39 @@ public:
     }
 
   size_t erase(const Key &key)
-    {
-      return table.erase(key);
-    }
+  {
+    return table.erase(key);
+  }
 
   void erase(const iterator &it)
-    {
-      table.erase(it.internalIter);
-    }
+  {
+    table.erase(it.internalIter);
+  }
 
   void erase(iterator first, iterator last)
-    {
-      table.erase(first.internalIter, last.internalIter);
-    }
+  {
+    table.erase(first.internalIter, last.internalIter);
+  }
 
   void erase(const const_iterator &it)
-    {
-      table.erase(it.internalIter);
-    }
+  {
+    table.erase(it.internalIter);
+  }
 
   void erase(const_iterator first, const_iterator last)
-    {
-      table.erase(first.internalIter, last.internalIter);
-    }
+  {
+    table.erase(first.internalIter, last.internalIter);
+  }
 
   void resize(size_t num_elements_hint)
-    {
-      table.resize(num_elements_hint);
-    }
+  {
+    table.resize(num_elements_hint);
+  }
 
   void clear()
-    {
-      table.clear();
-    }
+  {
+    table.clear();
+  }
 
 };
 

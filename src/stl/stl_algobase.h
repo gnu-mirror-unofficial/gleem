@@ -33,27 +33,27 @@
 #define __SGI_STL_INTERNAL_ALGOBASE_H
 
 #ifndef __STL_CONFIG_H
-#include <stl_config.h>
+#include "stl_config.h"
 #endif
 #ifndef __SGI_STL_INTERNAL_RELOPS
-#include <stl_relops.h>
+#include "stl_relops.h"
 #endif
 #ifndef __SGI_STL_INTERNAL_PAIR_H
-#include <stl_pair.h>
+#include "stl_pair.h"
 #endif
 #ifndef __TYPE_TRAITS_H_
-#include <type_traits.h>
+#include "type_traits.h"
 #endif
 
-#include <string.h>
-#include <limits.h>
+#include <string>
+#include <limits>
 #include <stdlib.h>
 #include <stddef.h>
-#include <new.h>
+
 #include <iostream>
 
 #ifndef __SGI_STL_INTERNAL_ITERATOR_H
-#include <stl_iterator.h>
+#include "stl_iterator.h"
 #endif
 
 __STL_BEGIN_NAMESPACE

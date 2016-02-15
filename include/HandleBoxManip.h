@@ -7,14 +7,14 @@
 #ifndef _GLEEM_HANDLE_BOX_MANIP_H
 #define _GLEEM_HANDLE_BOX_MANIP_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Manip.h>
-#include <gleem/Line.h>
-#include <gleem/Plane.h>
-#include <gleem/PlaneUV.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Manip.h"
+#include "Line.h"
+#include "Plane.h"
+#include "PlaneUV.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 

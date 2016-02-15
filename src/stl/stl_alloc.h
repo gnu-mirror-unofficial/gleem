@@ -55,7 +55,7 @@
 
 #include <stddef.h>
 #include <stdlib.h>
-#include <string.h>
+#include <string>
 #include <assert.h>
 #ifndef __RESTRICT
 #  define __RESTRICT

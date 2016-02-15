@@ -7,16 +7,16 @@
 #ifndef _GLEEM_PLANE_H
 #define _GLEEM_PLANE_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL Plane
 {
-public:
+ public:
   /** Default constructor initializes normal to (0, 1, 0) and point to
       (0, 0, 0) */
   Plane();
@@ -49,7 +49,7 @@ public:
 		    GleemV3f &intPt,
 		    float &t) const;
 
-private:
+ private:
   /** Normalized */
   GleemV3f normal;
   GleemV3f point;

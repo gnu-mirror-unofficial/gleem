@@ -7,7 +7,7 @@
 #ifndef _GLEEM__LINALG_H
 #define _GLEEM__LINALG_H
 
-#include <gleem/GleemDLL.h>
+#include "GleemDLL.h"
 #include <iostream>
 
 
@@ -22,7 +22,7 @@ class _GleemMat4f;
 /** 3-element vector. */
 
 class GLEEMDLL _GleemV3f {
-public:
+ public:
   _GleemV3f();
   _GleemV3f(const _GleemV3f &arg);
   _GleemV3f(float x, float y, float z);
@@ -73,9 +73,9 @@ public:
 
   /** Convenience operator. Puts vector on output stream looking like
       "[ v0, v1, v2 ]". */
-  friend ostream &operator<<(ostream &os, const _GleemV3f &vec);
+  friend std::ostream &operator<<(std::ostream &os, const _GleemV3f &vec);
 
-private:
+ private:
   float val[3];
 };
 
@@ -129,9 +129,9 @@ public:
 
   /** Convenience operator. Puts vector on output stream looking like
       "[ v0, v1 ]". */
-  friend ostream &operator<<(ostream &os, const _GleemV2f &vec);
+  friend std::ostream &operator<<(std::ostream &os, const _GleemV2f &vec);
 
-private:
+ private:
   float val[2];
 };
 
@@ -337,9 +337,9 @@ public:
       like "[ q0, q1, q2, q3 ]". Note this does NOT correspond to the
       axis-angle representation, but to the actual quaternion
       components. */
-  friend ostream &operator<<(ostream &os, const _GleemRot &rot);
+  friend std::ostream &operator<<(std::ostream &os, const _GleemRot &rot);
 
-private:
+ private:
   // Representation is a quaternion. Element 0 is the scalar part (=
   // cos(theta/2)), elements 1..3 the imaginary/"vector" part (=
   // sin(theta/2) * axis).

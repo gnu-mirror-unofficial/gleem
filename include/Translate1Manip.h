@@ -7,18 +7,18 @@
 #ifndef _GLEEM_TRANSLATE_1_MANIP_H
 #define _GLEEM_TRANSLATE_1_MANIP_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Manip.h>
-#include <gleem/Line.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Manip.h"
+#include "Line.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
 class GLEEMDLL Translate1Manip : public Manip
 {
-public:
+ public:
   /** Default Translate1Manip has translation (0, 0, 0) and axis (1,
       0, 0) */
   Translate1Manip();
@@ -51,9 +51,9 @@ public:
       piece. User retains ownership of memory of newGeom. */
   void replaceGeometry(ManipPart *newGeom);
 
-GLEEM_INTERNAL public:
-  /** Implementation of Manip interface */
-  virtual void render();
+  GLEEM_INTERNAL public:
+    /** Implementation of Manip interface */
+    virtual void render();
   virtual void intersectRay(const GleemV3f &rayStart,
 			    const GleemV3f &rayDirection,
 			    vector<HitPoint> &results);
@@ -64,7 +64,7 @@ GLEEM_INTERNAL public:
 		    const GleemV3f &rayDirection);
   virtual void makeInactive();
 
-private:
+ private:
   void recalc();
   ManipPart *geometry;
   bool iOwnGeometry;

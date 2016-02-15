@@ -7,10 +7,10 @@
 #ifndef _GLEEM_CAMERA_PARAMETERS_H
 #define _GLEEM_CAMERA_PARAMETERS_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/Linalg.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 

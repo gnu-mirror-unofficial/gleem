@@ -8,12 +8,12 @@
 #define _GLEEM_MANIP_PART_H
 
 
-#include <vector.h>
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/HitPoint.h>
-#include <gleem/Linalg.h>
+#include <vector>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "HitPoint.h"
+#include "Linalg.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -26,7 +26,7 @@ class Manip;
 
 GLEEM_INTERNAL class GLEEMDLL ManipPart
 {
-public:
+ public:
   ManipPart(Manip *parent);
   virtual ~ManipPart();
 
@@ -59,15 +59,15 @@ public:
   virtual void setVisible(bool visible) = 0;
   virtual bool getVisible() const = 0;
 
-GLEEM_INTERNAL public:
-  /** Set the parent of this ManipPart */
-  void setParent(Manip *parent);
+  GLEEM_INTERNAL public:
+    /** Set the parent of this ManipPart */
+    void setParent(Manip *parent);
 
-  /** Get the containing Manip for constructing HitPoints */
-  Manip *getParent() const;
+    /** Get the containing Manip for constructing HitPoints */
+    Manip *getParent() const;
 
-private:
-  Manip *parent;
+ private:
+    Manip *parent;
 };
 
 GLEEM_EXIT_NAMESPACE

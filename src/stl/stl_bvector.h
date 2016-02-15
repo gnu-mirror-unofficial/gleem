@@ -252,7 +252,7 @@ struct __bit_const_iterator
 
 #      ifdef __SGI_STL_VECBOOL_TEMPLATE
        __STL_END_NAMESPACE
-#      include <stl_vector.h>
+#      include "stl_vector.h"
        __STL_BEGIN_NAMESPACE
 template<class Alloc> class vector<bool, Alloc>
 #      else /* __SGI_STL_VECBOOL_TEMPLATE */

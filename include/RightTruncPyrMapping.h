@@ -7,10 +7,10 @@
 #ifndef _GLEEM_RIGHT_TRUNC_PYR_H
 #define _GLEEM_RIGHT_TRUNC_PYR_H
 
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/ScreenToRayMapping.h>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "ScreenToRayMapping.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -19,7 +19,7 @@ GLEEM_ENTER_NAMESPACE
 
 GLEEM_INTERNAL class GLEEMDLL RightTruncPyrMapping : public ScreenToRayMapping
 {
-public:
+ public:
   virtual void mapScreenToRay(const GleemV2f &screenCoords,
 			      const CameraParameters &params,
 			      GleemV3f &raySource,

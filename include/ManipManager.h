@@ -7,12 +7,12 @@
 #ifndef _GLEEM_MANIPMANAGER_H
 #define _GLEEM_MANIPMANAGER_H
 
-#include <vector.h>
-#include <gleem/Namespace.h>
-#include <gleem/GleemDLL.h>
-#include <gleem/Util.h>
-#include <gleem/ScreenToRayMapping.h>
-#include <gleem/BasicHashtable.h>
+#include <vector>
+#include "Namespace.h"
+#include "GleemDLL.h"
+#include "Util.h"
+#include "ScreenToRayMapping.h"
+#include "BasicHashtable.h"
 
 GLEEM_ENTER_NAMESPACE
 
@@ -22,7 +22,7 @@ class Manip;
 
 class GLEEMDLL ManipManager
 {
-public:
+ public:
 
   /** init() must be called before instantiating any manips. By
       default it overrides the GLUT mouse, passive motion, and motion
@@ -78,110 +78,110 @@ public:
       viewed in this window. */
   bool removeManipFromWindow(Manip *manip, int windowID);
 
-GLEEM_INTERNAL public:
+  GLEEM_INTERNAL public:
 
-  /** This installs the mouse, motion and passive motion callbacks
-      which the ManipManager needs for the given window. NOTE that
-      this switches rendering contexts (via glutSetWindow) and leaves
-      windowID's context the current. You must not change this
-      behavior (for example, ExaminerViewer.cpp relies on it.) */
-  void installGLUTCallbacks(int windowID);
+    /** This installs the mouse, motion and passive motion callbacks
+	which the ManipManager needs for the given window. NOTE that
+	this switches rendering contexts (via glutSetWindow) and leaves
+	windowID's context the current. You must not change this
+	behavior (for example, ExaminerViewer.cpp relies on it.) */
+    void installGLUTCallbacks(int windowID);
 
-  /** Installed by installGLUTCallbacks, but you can call it manually
-      if your application needs to override it */
-  static void mouseFunc(int button, int state, int x, int y);
+    /** Installed by installGLUTCallbacks, but you can call it manually
+	if your application needs to override it */
+    static void mouseFunc(int button, int state, int x, int y);
 
-  /** Installed by installGLUTCallbacks, but you can call it manually
-      if your application needs to override it */
-  static void motionFunc(int x, int y);
+    /** Installed by installGLUTCallbacks, but you can call it manually
+	if your application needs to override it */
+    static void motionFunc(int x, int y);
 
-  /** Installed by installGLUTCallbacks, but you can call it manually
-      if your application needs to override it. This one only provides
-      highlighting, which is merely a convenience, so you can skip
-      calling it if you don't need it or it's too expensive */
-  static void passiveMotionFunc(int x, int y);
+    /** Installed by installGLUTCallbacks, but you can call it manually
+	if your application needs to override it. This one only provides
+	highlighting, which is merely a convenience, so you can skip
+	calling it if you don't need it or it's too expensive */
+    static void passiveMotionFunc(int x, int y);
 
-  /** Okay, okay. Here's the mapping from normalized screen
-      coordinates to a 3D ray based on the camera parameters. You can
-      feel free to replace this mapping with something more
-      sophisticated; you'll have to modify the CameraParameters data
-      structure, though. FIXME: update this to handle multiple
-      windows. */
-  ScreenToRayMapping *getScreenToRayMapping();
-  void setScreenToRayMapping(ScreenToRayMapping *mapping);
+    /** Okay, okay. Here's the mapping from normalized screen
+	coordinates to a 3D ray based on the camera parameters. You can
+	feel free to replace this mapping with something more
+	sophisticated; you'll have to modify the CameraParameters data
+	structure, though. FIXME: update this to handle multiple
+	windows. */
+    ScreenToRayMapping *getScreenToRayMapping();
+    void setScreenToRayMapping(ScreenToRayMapping *mapping);
 
-  /** Remove a manipulator from the manager completely. */
-  void removeManip(Manip *manip);
+    /** Remove a manipulator from the manager completely. */
+    void removeManip(Manip *manip);
 
-  /** Get the camera parameters associated with a particular
-      window. NOTE: since this is an internal method, asserts if the
-      windowID was unknown. */
-  const CameraParameters &getCameraParameters(int windowID);
+    /** Get the camera parameters associated with a particular
+	window. NOTE: since this is an internal method, asserts if the
+	windowID was unknown. */
+    const CameraParameters &getCameraParameters(int windowID);
 
-private:
-  ManipManager();
+ private:
+    ManipManager();
 
-  void mouseMethod(int windowID, int button, int state, int x, int y);
-  void motionMethod(int windowID, int x, int y);
-  void passiveMotionMethod(int windowID, int x, int y);
+    void mouseMethod(int windowID, int button, int state, int x, int y);
+    void motionMethod(int windowID, int x, int y);
+    void passiveMotionMethod(int windowID, int x, int y);
 
-  static ManipManager *manipManager;
-  ScreenToRayMapping *mapping;
+    static ManipManager *manipManager;
+    ScreenToRayMapping *mapping;
 
-  // To handle multiple windows, we keep a list of attached
-  // manipulators to each window ID.
-  typedef vector<Manip *> ManipList;
-  typedef BasicHashtable<ManipList, int, hash<int> > WindowToManipListTable;
-  WindowToManipListTable windowManipTable;
+    // To handle multiple windows, we keep a list of attached
+    // manipulators to each window ID.
+    typedef vector<Manip *> ManipList;
+    typedef BasicHashtable<ManipList, int, hash<int> > WindowToManipListTable;
+    WindowToManipListTable windowManipTable;
 
-  // Hash table mapping window IDs to lists of Manips which are
-  // contained in that window
-  typedef vector<int> IntList;
-  typedef size_t ManipHashFunc(const Manip * const &arg);
-  static size_t hashManip(const Manip * const &arg);
-  typedef BasicHashtable<IntList, Manip *, ManipHashFunc *> ManipToWindowListTable;
-  ManipToWindowListTable manipWindowTable;
+    // Hash table mapping window IDs to lists of Manips which are
+    // contained in that window
+    typedef vector<int> IntList;
+    typedef size_t ManipHashFunc(const Manip * const &arg);
+    static size_t hashManip(const Manip * const &arg);
+    typedef BasicHashtable<IntList, Manip *, ManipHashFunc *> ManipToWindowListTable;
+    ManipToWindowListTable manipWindowTable;
 
-  // Hash table mapping window ID to CameraParameters structure
-  typedef BasicHashtable<CameraParameters, int, hash<int> > WindowToCameraParametersTable;
-  WindowToCameraParametersTable windowCameraTable;
+    // Hash table mapping window ID to CameraParameters structure
+    typedef BasicHashtable<CameraParameters, int, hash<int> > WindowToCameraParametersTable;
+    WindowToCameraParametersTable windowCameraTable;
 
-  // Convenience routines
+    // Convenience routines
 
-  /** Ensure that an entry exists for manip. Does not create a new one
-      if one already exists. */
-  void createEntryForManip(Manip *manip);
+    /** Ensure that an entry exists for manip. Does not create a new one
+	if one already exists. */
+    void createEntryForManip(Manip *manip);
 
-  /** Remove the entry for the given manipulator completely. This also
-      cleans up the reverse mappings from window ID to manipulator. */
-  void removeEntryForManip(Manip *manip);
+    /** Remove the entry for the given manipulator completely. This also
+	cleans up the reverse mappings from window ID to manipulator. */
+    void removeEntryForManip(Manip *manip);
 
-  /** Returns true if the ManipManager knows about the passed
-      manipulator, false if not. */
-  bool findEntryForManip(Manip *manip);
+    /** Returns true if the ManipManager knows about the passed
+	manipulator, false if not. */
+    bool findEntryForManip(Manip *manip);
 
-  /** Ensure that an entry exists for windowID. Does not create a new
-      one if one already exists. */
-  void createEntryForWindow(int windowID);
+    /** Ensure that an entry exists for windowID. Does not create a new
+	one if one already exists. */
+    void createEntryForWindow(int windowID);
 
-  /** Remove the entry for the given window ID completely. This also
-      cleans up the reverse mappings from manipulator to window ID. */
-  void removeEntryForWindow(int windowID);
+    /** Remove the entry for the given window ID completely. This also
+	cleans up the reverse mappings from manipulator to window ID. */
+    void removeEntryForWindow(int windowID);
 
-  /** Returns true if the ManipManager knows about the passed window
-      ID, false if not. */
-  bool findEntryForWindow(int windowID);
+    /** Returns true if the ManipManager knows about the passed window
+	ID, false if not. */
+    bool findEntryForWindow(int windowID);
 
-  bool dragging;
-  Manip *curManip;
-  Manip *curHighlightedManip;
+    bool dragging;
+    Manip *curManip;
+    Manip *curHighlightedManip;
 
-  GleemV2f screenToNormalizedCoordinates(const CameraParameters &params,
-					int x, int y);
-  bool computeRay(const CameraParameters &params,
-		  int x, int y,
-		  GleemV3f &raySource,
-		  GleemV3f &rayDirection);
+    GleemV2f screenToNormalizedCoordinates(const CameraParameters &params,
+					   int x, int y);
+    bool computeRay(const CameraParameters &params,
+		    int x, int y,
+		    GleemV3f &raySource,
+		    GleemV3f &rayDirection);
 };
 
 GLEEM_EXIT_NAMESPACE

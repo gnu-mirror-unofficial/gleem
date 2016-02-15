@@ -228,36 +228,36 @@ HandleBoxManip::makeActive(const HitPoint &hit)
 		{
 		  FaceInfo &faceInfo = faces[info.faceIndices[i]];
 		  tmpDotp = faceInfo.normal.dot(hit.rayDirection);
-		  // cerr << "i: " << i << " tmpDotp: " << tmpDotp << endl;
+		  // std::cerr << "i: " << i << " tmpDotp: " << tmpDotp << std::endl;
 		  if ((i == 0) || (tmpDotp < dotp))
 		    {
 		      dotp = tmpDotp;
 		      faceIdx = info.faceIndices[i];
 		    }
 		}
-	      // cerr << "faceIdx: " << faceIdx << " dotp: " << dotp << endl;
+	      // std::cerr << "faceIdx: " << faceIdx << " dotp: " << dotp << std::endl;
 	      scaleAxes = faces[faceIdx].scaleAxes;
-	      // cerr << "scaleAxes: ";
+	      // std::cerr << "scaleAxes: ";
 	      GleemV3f uAxisOrig, vAxisOrig;
 	      if (scaleAxes == SCALE_XY)
 		{
 		  uAxisOrig.setValue(1, 0, 0);
 		  vAxisOrig.setValue(0, 1, 0);
-		  // cerr << "SCALE_XY";
+		  // std::cerr << "SCALE_XY";
 		}
 	      else if (scaleAxes == SCALE_YZ)
 		{
 		  uAxisOrig.setValue(0, 1, 0);
 		  vAxisOrig.setValue(0, 0, 1);
-		  // cerr << "SCALE_YZ";
+		  // std::cerr << "SCALE_YZ";
 		}
 	      else
 		{
 		  uAxisOrig.setValue(0, 0, 1);
 		  vAxisOrig.setValue(1, 0, 0);
-		  // cerr << "SCALE_ZX";
+		  // std::cerr << "SCALE_ZX";
 		}
-	      // cerr << endl;
+	      // std::cerr << std::endl;
 	      GleemV3f uAxis, vAxis;
 	      rotation.rotateVector(uAxisOrig, uAxis);
 	      rotation.rotateVector(vAxisOrig, vAxis);
@@ -435,7 +435,7 @@ HandleBoxManip::drag(const GleemV3f &rayStart,
     }
   else
     {
-      cerr << "HandleBoxManip::drag: ERROR: Unexpected drag state" << endl;
+      std::cerr << "HandleBoxManip::drag: ERROR: Unexpected drag state" << std::endl;
       return;
     }
   Manip::drag(rayStart, rayDirection);

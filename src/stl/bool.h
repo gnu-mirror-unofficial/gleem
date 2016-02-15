@@ -29,7 +29,7 @@
 // stl_config.h.
 
 #ifndef __STL_CONFIG_H
-#include <stl_config.h>
+#include "stl_config.h"
 #endif /* __STL_CONFIG_H */
 
 // Local Variables:
