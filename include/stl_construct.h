@@ -31,8 +31,6 @@
 #ifndef __SGI_STL_INTERNAL_CONSTRUCT_H
 #define __SGI_STL_INTERNAL_CONSTRUCT_H
 
-#include <new.h>
-
 __STL_BEGIN_NAMESPACE
 
 template <class T>
