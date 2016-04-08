@@ -11,9 +11,9 @@
 #include <GL/glut.h>
 #include <iostream>
 #include <algo.h>
-#include "../include/ManipManager.h"
-#include "../include/RightTruncPyrMapping.h"
-#include "../include/Manip.h"
+#include <ManipManager.h>
+#include <RightTruncPyrMapping.h>
+#include <Manip.h>
 
 GLEEM_USE_NAMESPACE
 
@@ -34,8 +34,8 @@ ManipManager::init(bool install)
 {
   if (manipManager != NULL)
     {
-      std::cerr << "gleem::ManipManager::init(): (warning/usage) init() called "
-	   << "more than once (error, but continuing)" << std::endl;
+      cerr << "gleem::ManipManager::init(): (warning/usage) init() called "
+	   << "more than once (error, but continuing)" << endl;
     }
   else
     {
@@ -50,9 +50,9 @@ ManipManager::getManipManager()
 {
   if (manipManager == NULL)
     {
-      std::cerr << "gleem::ManipManager::getManipManager: WARNING: you probably "
+      cerr << "gleem::ManipManager::getManipManager: WARNING: you probably "
 	   << "forgot to call ManipManager::init(), so I'm doing it for you"
-	   << std::endl;
+	   << endl;
       init();
     }
   return manipManager;
@@ -66,11 +66,11 @@ ManipManager::updateCameraParameters(int windowID,
     windowCameraTable.find(windowID);
   if (iter == windowCameraTable.end())
     {
-      std::cerr << "gleem::ManipManager::updateCameraParameters: ERROR: "
+      cerr << "gleem::ManipManager::updateCameraParameters: ERROR: "
 	   << "I got called with a window I had never heard of ("
 	   << windowID << ")." << endl
 	   << "You need to call windowCreated() when you open a new window."
-	   << std::endl;
+	   << endl;
     }
   *iter = params;
 }
@@ -207,8 +207,8 @@ ManipManager::removeManip(Manip *manip)
 {
   if (curManip == manip)
     {
-      std::cerr << "ManipManager::removeManip: WARNING: it's a bad idea to delete "
-	   << "a manipulator while you're dragging it" << std::endl;
+      cerr << "ManipManager::removeManip: WARNING: it's a bad idea to delete "
+	   << "a manipulator while you're dragging it" << endl;
       curManip = NULL;
     }
   removeEntryForManip(manip);
@@ -241,11 +241,11 @@ ManipManager::mouseMethod(int windowID, int button, int state, int x, int y)
     windowManipTable.find(windowID);
   if (windowTableIter == windowManipTable.end())
     {
-      std::cerr << "gleem::ManipManager::mouseMethod: ERROR: "
+      cerr << "gleem::ManipManager::mouseMethod: ERROR: "
 	   << "I got called from a window I had never heard of ("
 	   << windowID << "). " << endl
 	   << "You need to call windowCreated() when you open a new window."
-	   << std::endl;
+	   << endl;
       return;
     }
   ManipList &manips = *windowTableIter;
@@ -258,8 +258,8 @@ ManipManager::mouseMethod(int windowID, int button, int state, int x, int y)
 	  GleemV3f raySource, rayDirection;
 	  if (computeRay(params, x, y, raySource, rayDirection) == false)
 	    {
-	      std::cerr << "gleem::ManipManager::mouseFunc: ERROR: "
-		   << "screen to ray mapping was unspecified" << std::endl;
+	      cerr << "gleem::ManipManager::mouseFunc: ERROR: "
+		   << "screen to ray mapping was unspecified" << endl;
 	      return;
 	    }
 	
@@ -296,7 +296,7 @@ ManipManager::mouseMethod(int windowID, int button, int state, int x, int y)
 	}
       else
 	{
-	  //	  std::cerr << "Button up" << std::endl;
+	  //	  cerr << "Button up" << endl;
 	  if (curManip != NULL)
 	    {
 	      curManip->makeInactive();
@@ -316,31 +316,31 @@ ManipManager::motionMethod(int windowID, int x, int y)
     windowManipTable.find(windowID);
   if (windowTableIter == windowManipTable.end())
     {
-      std::cerr << "gleem::ManipManager::mouseMethod: ERROR: "
+      cerr << "gleem::ManipManager::mouseMethod: ERROR: "
 	   << "I got called from a window I had never heard of ("
 	   << windowID << "). " << endl
 	   << "You need to call windowCreated() when you open a new window."
-	   << std::endl;
+	   << endl;
       return;
     }
   ManipList &manips = *windowTableIter;
   const CameraParameters &params = getCameraParameters(windowID);
-  //  std::cerr << "motionFunc" << std::endl;
+  //  cerr << "motionFunc" << endl;
   if (dragging)
     {
       // Compute ray in 3D
       GleemV3f raySource, rayDirection;
       if (computeRay(params, x, y, raySource, rayDirection) == false)
 	{
-	  std::cerr << "gleem::ManipManager::motionFunc: ERROR: "
-	       << "screen to ray mapping was unspecified" << std::endl;
+	  cerr << "gleem::ManipManager::motionFunc: ERROR: "
+	       << "screen to ray mapping was unspecified" << endl;
 	  return;
 	}
       if (curManip == NULL)
 	{
-	  std::cerr << "gleem::ManipManager::motionFunc: INTERNAL ERROR: "
+	  cerr << "gleem::ManipManager::motionFunc: INTERNAL ERROR: "
 	       << "curManip == NULL during drag (did you delete the "
-	       << "current manipulator?)" << std::endl;
+	       << "current manipulator?)" << endl;
 	  dragging = false;
 	  return;
 	}
@@ -360,22 +360,22 @@ ManipManager::passiveMotionMethod(int windowID, int x, int y)
     windowManipTable.find(windowID);
   if (windowTableIter == windowManipTable.end())
     {
-      std::cerr << "gleem::ManipManager::mouseMethod: ERROR: "
+      cerr << "gleem::ManipManager::mouseMethod: ERROR: "
 	   << "I got called from a window I had never heard of ("
 	   << windowID << "). " << endl
 	   << "You need to call windowCreated() when you open a new window."
-	   << std::endl;
+	   << endl;
       return;
     }
   ManipList &manips = *windowTableIter;
   const CameraParameters &params = getCameraParameters(windowID);
-  //  std::cerr << "passiveMotionFunc" << std::endl;
+  //  cerr << "passiveMotionFunc" << endl;
   // Compute ray in 3D
   GleemV3f raySource, rayDirection;
   if (computeRay(params, x, y, raySource, rayDirection) == false)
     {
-      std::cerr << "gleem::ManipManager::passiveMotionFunc: ERROR: "
-	   << "screen to ray mapping was unspecified" << std::endl;
+      cerr << "gleem::ManipManager::passiveMotionFunc: ERROR: "
+	   << "screen to ray mapping was unspecified" << endl;
       return;
     }
 
@@ -407,7 +407,7 @@ ManipManager::passiveMotionMethod(int windowID, int x, int y)
       assert(hp.manipPart != NULL);
       curHighlightedManip = hp.manipulator;
       curHighlightedManip->highlight(hp);
-      //      std::cerr << "Highlighted manip" << std::endl;
+      //      cerr << "Highlighted manip" << endl;
     }
   else
     curHighlightedManip = NULL;

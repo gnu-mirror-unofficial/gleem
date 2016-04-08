@@ -4,7 +4,7 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <cmath>
+#include <math.h>
 #include <stdlib.h>
 #include <iostream>
 #include <assert.h>
@@ -14,8 +14,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include "../include/ExaminerViewer.h"
-#include "../include/MathUtil.h"
+#include <ExaminerViewer.h>
+#include <MathUtil.h>
 
 GLEEM_USE_NAMESPACE
 
@@ -110,9 +110,9 @@ ExaminerViewer::viewAll()
 {
   if (provider == NULL)
     {
-      std::cerr << "gleem::ExaminerViewer::viewAll: ERROR: "
+      cerr << "gleem::ExaminerViewer::viewAll: ERROR: "
 	   << "bounding sphere provider was NULL, so I don't know how "
-	   << "big the scene is" << std::endl;
+	   << "big the scene is" << endl;
       return;
     }
   // Figure out how far to move
@@ -125,8 +125,8 @@ ExaminerViewer::viewAll()
     minFOV = horizFOV;
   if (minFOV == 0.0f)
     {
-      std::cerr << "gleem::ExaminerViewer::viewAll: ERROR: "
-	   << "minimum field of view was zero!" << std::endl;
+      cerr << "gleem::ExaminerViewer::viewAll: ERROR: "
+	   << "minimum field of view was zero!" << endl;
       return;
     }
   const BSphere &bsph = provider->getBoundingSphere();
@@ -407,10 +407,10 @@ ExaminerViewer::recalc()
   orientation.rotateVector(GleemV3f(0, 0, -1), params.forwardDirection);
   orientation.rotateVector(GleemV3f(0, 1, 0), params.upDirection);
 
-  //  std::cerr << "params.position: " << params.position << std::endl;
-  //  std::cerr << "params.forwardDirection: " << params.forwardDirection << std::endl;
-  //  std::cerr << "params.upDirection: " << params.upDirection << std::endl;
-  //  std::cerr << "focalDist: " << focalDist << std::endl;
+  //  cerr << "params.position: " << params.position << endl;
+  //  cerr << "params.forwardDirection: " << params.forwardDirection << endl;
+  //  cerr << "params.upDirection: " << params.upDirection << endl;
+  //  cerr << "focalDist: " << focalDist << endl;
 
   // Compute modelview matrix based on camera parameters, position and
   // orientation

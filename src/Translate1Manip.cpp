@@ -4,9 +4,9 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include "../include/Translate1Manip.h"
-#include "../include/ManipPartTwoWayArrow.h"
-#include "../include/MathUtil.h"
+#include <Translate1Manip.h>
+#include <ManipPartTwoWayArrow.h>
+#include <MathUtil.h>
 
 GLEEM_USE_NAMESPACE
 

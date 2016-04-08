@@ -5,8 +5,8 @@
  */
 
 #include <assert.h>
-#include <cmath>
-#include "../include/_Linalg.h"
+#include <math.h>
+#include <_Linalg.h>
 #include <memory.h>
 
 // Can you believe Microsoft?
@@ -199,7 +199,7 @@ _GleemV3f::cross(const _GleemV3f &a, const _GleemV3f &b, _GleemV3f &c)
 ostream &
 operator<<(ostream &os, const _GleemV3f &vec)
 {
-  os << "[ " << vec[0] << ", " << vec[1] << ", " << vec[2] << " ]" << std::endl;
+  os << "[ " << vec[0] << ", " << vec[1] << ", " << vec[2] << " ]" << endl;
   return os;
 }
 
@@ -363,7 +363,7 @@ _GleemV2f::scale(const _GleemV2f &a, float s, _GleemV2f &c)
 ostream &
 operator<<(ostream &os, const _GleemV2f &vec)
 {
-  os << "[ " << vec[0] << ", " << vec[1] << " ]" << std::endl;
+  os << "[ " << vec[0] << ", " << vec[1] << " ]" << endl;
   return os;
 }
 
@@ -974,6 +974,6 @@ ostream &
 operator<<(ostream &os, const _GleemRot &vec)
 {
   os << "[ " << vec.val[0] << ", " << vec.val[1] << ", "
-     << vec.val[2] << ", " << vec.val[3] << " ]" << std::endl;
+     << vec.val[2] << ", " << vec.val[3] << " ]" << endl;
   return os;
 }

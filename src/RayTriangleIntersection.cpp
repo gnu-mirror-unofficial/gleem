@@ -6,9 +6,9 @@
 
 #include <assert.h>
 #include <stdio.h>
-#include <cmath>
-#include "../include/RayTriangleIntersection.h"
-#include "../include/MathUtil.h"
+#include <math.h>
+#include <RayTriangleIntersection.h>
+#include <MathUtil.h>
 
 GLEEM_USE_NAMESPACE
 

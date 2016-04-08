@@ -5,7 +5,7 @@
  */
 
 #include <algo.h>
-#include "../include/ManipPartGroup.h"
+#include <ManipPartGroup.h>
 
 GLEEM_USE_NAMESPACE
 

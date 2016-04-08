@@ -4,17 +4,17 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <cmath>
+#include <math.h>
 #ifdef WIN32
 # include <windows.h>
 #endif
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include "../include/ManipManager.h"
-#include "../include/HandleBoxManip.h"
-#include "../include/MathUtil.h"
-#include "../include/ExaminerViewer.h"
+#include <ManipManager.h>
+#include <HandleBoxManip.h>
+#include <MathUtil.h>
+#include <ExaminerViewer.h>
 
 GLEEM_USE_NAMESPACE
 
@@ -27,24 +27,24 @@ class HandleBoxManipBSphereProvider :
 {
 public:
   HandleBoxManipBSphereProvider(HandleBoxManip *manip)
-  {
-    this->manip = manip;
-  }
+    {
+      this->manip = manip;
+    }
 
   virtual const BSphere &getBoundingSphere()
-  {
-    bsph.setCenter(manip->getTranslation());
-    GleemV3f scale0 = manip->getScale();
-    GleemV3f scale1 = manip->getGeometryScale();
-    GleemV3f scale;
-    scale[0] = 2.0f * scale0[0] * scale1[0];
-    scale[1] = 2.0f * scale0[1] * scale1[1];
-    scale[2] = 2.0f * scale0[2] * scale1[2];
-    bsph.setRadius(sqrtf(scale[0] * scale[0] +
-			 scale[1] * scale[1] +
-			 scale[2] * scale[2]));
-    return bsph;
-  }
+    {
+      bsph.setCenter(manip->getTranslation());
+      GleemV3f scale0 = manip->getScale();
+      GleemV3f scale1 = manip->getGeometryScale();
+      GleemV3f scale;
+      scale[0] = 2.0f * scale0[0] * scale1[0];
+      scale[1] = 2.0f * scale0[1] * scale1[1];
+      scale[2] = 2.0f * scale0[2] * scale1[2];
+      bsph.setRadius(sqrtf(scale[0] * scale[0] +
+			   scale[1] * scale[1] +
+			   scale[2] * scale[2]));
+      return bsph;
+    }
 
 private:
   HandleBoxManip *manip;

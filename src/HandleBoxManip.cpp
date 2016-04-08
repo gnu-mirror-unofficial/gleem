@@ -4,17 +4,17 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <cmath>
+#include <math.h>
 #ifdef WIN32
 # include <windows.h>
 #endif
 #include <GL/glut.h>
-#include "../include/HandleBoxManip.h"
-#include "../include/ManipPartTransform.h"
-#include "../include/ManipPartCube.h"
-#include "../include/ManipPartLineSeg.h"
-#include "../include/ManipPartSquare.h"
-#include "../include/MathUtil.h"
+#include <HandleBoxManip.h>
+#include <ManipPartTransform.h>
+#include <ManipPartCube.h>
+#include <ManipPartLineSeg.h>
+#include <ManipPartSquare.h>
+#include <MathUtil.h>
 
 GLEEM_USE_NAMESPACE
 
@@ -228,36 +228,36 @@ HandleBoxManip::makeActive(const HitPoint &hit)
 		{
 		  FaceInfo &faceInfo = faces[info.faceIndices[i]];
 		  tmpDotp = faceInfo.normal.dot(hit.rayDirection);
-		  // std::cerr << "i: " << i << " tmpDotp: " << tmpDotp << std::endl;
+		  // cerr << "i: " << i << " tmpDotp: " << tmpDotp << endl;
 		  if ((i == 0) || (tmpDotp < dotp))
 		    {
 		      dotp = tmpDotp;
 		      faceIdx = info.faceIndices[i];
 		    }
 		}
-	      // std::cerr << "faceIdx: " << faceIdx << " dotp: " << dotp << std::endl;
+	      // cerr << "faceIdx: " << faceIdx << " dotp: " << dotp << endl;
 	      scaleAxes = faces[faceIdx].scaleAxes;
-	      // std::cerr << "scaleAxes: ";
+	      // cerr << "scaleAxes: ";
 	      GleemV3f uAxisOrig, vAxisOrig;
 	      if (scaleAxes == SCALE_XY)
 		{
 		  uAxisOrig.setValue(1, 0, 0);
 		  vAxisOrig.setValue(0, 1, 0);
-		  // std::cerr << "SCALE_XY";
+		  // cerr << "SCALE_XY";
 		}
 	      else if (scaleAxes == SCALE_YZ)
 		{
 		  uAxisOrig.setValue(0, 1, 0);
 		  vAxisOrig.setValue(0, 0, 1);
-		  // std::cerr << "SCALE_YZ";
+		  // cerr << "SCALE_YZ";
 		}
 	      else
 		{
 		  uAxisOrig.setValue(0, 0, 1);
 		  vAxisOrig.setValue(1, 0, 0);
-		  // std::cerr << "SCALE_ZX";
+		  // cerr << "SCALE_ZX";
 		}
-	      // std::cerr << std::endl;
+	      // cerr << endl;
 	      GleemV3f uAxis, vAxis;
 	      rotation.rotateVector(uAxisOrig, uAxis);
 	      rotation.rotateVector(vAxisOrig, vAxis);
@@ -435,7 +435,7 @@ HandleBoxManip::drag(const GleemV3f &rayStart,
     }
   else
     {
-      std::cerr << "HandleBoxManip::drag: ERROR: Unexpected drag state" << std::endl;
+      cerr << "HandleBoxManip::drag: ERROR: Unexpected drag state" << endl;
       return;
     }
   Manip::drag(rayStart, rayDirection);

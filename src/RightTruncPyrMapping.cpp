@@ -4,9 +4,9 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <cmath>
+#include <math.h>
 #include <iostream>
-#include "../include/RightTruncPyrMapping.h"
+#include <RightTruncPyrMapping.h>
 
 GLEEM_USE_NAMESPACE
 

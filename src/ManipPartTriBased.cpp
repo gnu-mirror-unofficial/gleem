@@ -9,8 +9,8 @@
 # include <windows.h>
 #endif
 #include <GL/gl.h>
-#include "../include/ManipPartTriBased.h"
-#include "../include/RayTriangleIntersection.h"
+#include <ManipPartTriBased.h>
+#include <RayTriangleIntersection.h>
 
 GLEEM_USE_NAMESPACE
 
@@ -152,11 +152,11 @@ ManipPartTriBased::intersectRay(const GleemV3f &rayStart,
 	      hitPt.intPt = intPt;
 	      hitPt.t = t;
 	      /*
-	      std::cerr << "ManipPartTriBased::intersectRay:" << std::endl;
-	      std::cerr << "hitPt.manipulator = "
-		   << (void *) hitPt.manipulator << std::endl;
-	      std::cerr << "hitPt.manipPart = "
-		   << (void *) hitPt.manipPart << std::endl;
+	      cerr << "ManipPartTriBased::intersectRay:" << endl;
+	      cerr << "hitPt.manipulator = "
+		   << (void *) hitPt.manipulator << endl;
+	      cerr << "hitPt.manipPart = "
+		   << (void *) hitPt.manipPart << endl;
 	      */
 	      results.push_back(hitPt);
 	    }

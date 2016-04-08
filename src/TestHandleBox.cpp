@@ -4,16 +4,16 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include <cmath>
+#include <math.h>
 #ifdef WIN32
 # include <windows.h>
 #endif
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include "../include/ManipManager.h"
-#include "../include/MathUtil.h"
-#include "../include/HandleBoxManip.h"
+#include <ManipManager.h>
+#include <MathUtil.h>
+#include <HandleBoxManip.h>
 
 GLEEM_USE_NAMESPACE
 

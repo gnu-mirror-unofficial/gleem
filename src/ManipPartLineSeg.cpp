@@ -4,7 +4,7 @@
  * See the file LICENSE.txt in the doc/ directory for licensing terms.
  */
 
-#include "../include/ManipPartLineSeg.h"
+#include <ManipPartLineSeg.h>
 #ifdef WIN32
 # include <windows.h>
 #endif

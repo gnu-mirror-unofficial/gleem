@@ -5,7 +5,7 @@
  */
 
 #include <iostream>
-#include "../include/Line.h"
+#include <Line.h>
 
 GLEEM_USE_NAMESPACE
 
@@ -90,8 +90,8 @@ Line::recalc()
   float denom = direction.lengthSquared();
   if (denom == 0.0f)
     {
-      std::cerr << "gleem::Line::recalc: ERROR: direction was the zero vector "
-	   << "(not allowed)" << std::endl;
+      cerr << "gleem::Line::recalc: ERROR: direction was the zero vector "
+	   << "(not allowed)" << endl;
       return;
     }
   alongVec = point - (point.dot(direction) * direction);

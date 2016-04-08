@@ -10,9 +10,9 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include "../include/ManipManager.h"
-#include "../include/MathUtil.h"
-#include "../include/Translate1Manip.h"
+#include <ManipManager.h>
+#include <MathUtil.h>
+#include <Translate1Manip.h>
 
 GLEEM_USE_NAMESPACE
 

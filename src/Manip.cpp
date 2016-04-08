@@ -10,8 +10,8 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-#include "../include/Manip.h"
-#include "../include/ManipManager.h"
+#include <Manip.h>
+#include <ManipManager.h>
 
 GLEEM_USE_NAMESPACE
 
@@ -20,8 +20,8 @@ Manip::addMotionCallback(ManipCB *f, void *userData)
 {
   if (f == NULL)
     {
-      std::cerr << "Manip::addMotionCallback: ERROR: detected NULL callback function."
-	   << std::endl;
+      cerr << "Manip::addMotionCallback: ERROR: detected NULL callback function."
+	   << endl;
       return;
     }
   motionCallbacks.push_back(pair<ManipCB *, void *>(f, userData));

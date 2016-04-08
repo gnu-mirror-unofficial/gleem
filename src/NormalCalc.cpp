@@ -5,7 +5,7 @@
  */
 
 #include <iostream>
-#include "../include/NormalCalc.h"
+#include <NormalCalc.h>
 
 GLEEM_USE_NAMESPACE
 
@@ -22,9 +22,9 @@ NormalCalc::computeFacetedNormals(const GleemV3f *vertices,
 {
   if ((numIndices % 4) != 0)
     {
-      std::cerr << "NormalCalc::computeFacetedNormals: ERROR: "
+      cerr << "NormalCalc::computeFacetedNormals: ERROR: "
 	   << "numIndices wasn't divisible by 4, so it can't possibly "
-	   << "represent a set of triangles" << std::endl;
+	   << "represent a set of triangles" << endl;
       outputNormals = NULL;
       numNormals = 0;
       outputNormalIndices = NULL;
@@ -47,9 +47,9 @@ NormalCalc::computeFacetedNormals(const GleemV3f *vertices,
 	  (i2 < 0) || (i2 >= numVertices) ||
 	  (i3 != -1))
 	{
-	  std::cerr << "NormalCalc::computeFacetedNormals: ERROR: "
+	  cerr << "NormalCalc::computeFacetedNormals: ERROR: "
 	       << "vertex index out of bounds or no end of triangle "
-	       << "index found" << std::endl;
+	       << "index found" << endl;
 	  delete[] outputNormals;
 	  delete[] outputNormalIndices;
 	  outputNormals = NULL;
