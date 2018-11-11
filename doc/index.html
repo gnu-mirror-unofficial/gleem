@@ -1,0 +1,826 @@
+<html>
+<title>gleem (OpenGL Extremely Easy-to-use Manipulators) documentation</title>
+<body>
+
+<h2>
+gleem: OpenGL Extremely Easy-to-use Manipulators Documentation
+</h2>
+
+<center>
+<img src = "manips.jpg" width=640 height=250" alt = "[Picture of Manipulators]">
+</center>
+
+<p>
+
+<b>Last modified</b>: 2/4/2002. <b>Current gleem version</b>: 1.2.1
+
+<ul>
+<li> <a href = "#INTRO">Introduction and Description</a>
+<li> <a href = "#HOWTO-JAVA">How to Incorporate gleem Into Java Programs</a>
+<ul>
+<li> <a href = "#HOWTO-JAVA-COMPILE">Compiling</a>
+<li> <a href = "#HOWTO-JAVA-MANIPS">Manips</a>
+<li> <a href = "#HOWTO-JAVA-EXAMINER">ExaminerViewer</a>
+<li> <a href = "#HOWTO-JAVA-MULTIWIN">Multiple Window and Multi-Threading
+Support</a>
+</ul>
+<li> <a href = "#HOWTO-C++">How to Incorporate gleem Into C++ Programs</a>
+<ul>
+<li> <a href = "#HOWTO-C++-COMPILE">Compiling</a>
+<li> <a href = "#HOWTO-C++-MANIPS">Manips</a>
+<li> <a href = "#HOWTO-C++-EXAMINER">ExaminerViewer</a>
+<li> <a href = "#HOWTO-C++-MULTIWIN">Multiple Window and Multi-Threading
+Support (or Lack of)</a>
+</ul>
+<li> <a href = "#UI">User Interface</a>
+<ul>
+<li> <a href = "#UI-TRANSLATE12">Translate1Manip, Translate2Manip</a>
+<li> <a href = "#UI-HANDLEBOX">HandleBoxManip</a>
+<li> <a href = "#UI-EXAMINER">ExaminerViewer</a>
+</ul>
+<li> <a href = "#DEVELOPER">Developer Information</a>
+<ul>
+<li> <a href = "#DOCUMENTATION">Per-class documentation</a>
+<li> <a href = "#OVERVIEW">Library overview</a>
+</ul>
+<li> <a href = "#LICENSING">Licensing Terms</a>
+<li> <a href = "#FAQ">Frequently Asked Questions</a>
+<li> <a href = "#PROBLEMS">Known Problems</a>
+<li> <a href = "#LINKS">Interesting Links</a>
+<li> <a href = "#HISTORY">Version History</a>
+</ul>
+
+<h2>
+<a name = "INTRO">
+Introduction and Description
+</a>
+</h2>
+
+<p>
+
+gleem is a small, self-contained library of 3D widgets that support
+direct user interaction with a 3D scene. Both Java and C++ programming
+language implementations are included and have similar APIs. The user
+interfaces are roughly based on the manipulators in <a href =
+"http://www.sgi.com/">Silicon Graphics'</a> <a href =
+"http://oss.sgi.com/projects/inventor/">Open Inventor</a>; the names
+are borrowed from Inventor.
+
+</p>
+<p>
+
+The currently implemented manipulators are:
+
+<ul>
+<li> Translate1Manip: translation along a line
+<li> Translate2Manip: translation in a plane
+<li> HandleBoxManip: 3D translation and rotation
+</ul>
+
+</p>
+<p>
+
+The most recent version of gleem is available from <a href =
+"http://www.media.mit.edu/~kbrussel/gleem/">http://www.media.mit.edu/~kbrussel/gleem/</a>.
+
+</p>
+<p>
+
+gleem uses <a href = "http://www.opengl.org/">OpenGL</a> for rendering
+of its manipulators. The Java programming language version of gleem is
+built on top of Jausoft's <a href =
+"http://www.jausoft.com/gl4java/">OpenGL for Java</a> and uses the
+Java platform's window system support to collect mouse events; the C++
+version uses <a href =
+"http://www.opengl.org/developers/documentation/glut.html">GLUT</a>
+for window system interaction. All of the data structures for storing
+shapes and computing mouse pointer-object intersections are done
+within the library, not using the OpenGL picking mechanisms.
+
+<p>
+
+gleem currently does not implement Inventor-style fields, field-to-field
+connections, reference counting, run-time type checking, instantiation by
+type ID, or any other of the basic mechanisms which made Inventor possible.
+It is implemented entirely using virtual functions; there is no casting
+down the hierarchy based on run-time type checks.
+
+</p>
+<p>
+
+The most fundamental limitation of gleem is that, in the interest of
+portability, it has no notion of a scene graph. It defines what little such
+support it needs internally. All manipulators live conceptually in world
+coordinates. If you want to attach a manipulator to the end of a kinematic
+chain, for example, you will need to manually keep the manipulator in place
+as your application moves the links.
+
+</p>
+
+<hr width="50%">
+
+<h2>
+<a name = "HOWTO-JAVA">
+How to Incorporate gleem Into Java Programs
+</a>
+</h2>
+
+<h3>
+<a name = "HOWTO-JAVA-COMPILE">
+Compiling gleem for Java
+</a>
+</h3>
+
+<p>
+
+The Java programming language version of gleem was developed with <a
+href = "http://java.sun.com/j2se/1.4/">JDK 1.4</a> and <a href =
+"http://www.jausoft.com/gl4java/">OpenGL for Java 2.8</a>. The sources
+make use of the new <code>assert</code> keyword and therefore will not
+compile with earlier JDKs.
+
+</p>
+<p>
+
+Rather than dropping the OpenGL for Java jar and DLL/DSO into the JDK,
+it is recommended to set up CLASSPATH and either PATH or
+LD_LIBRARY_PATH entries to point at an installation elsewhere on the
+local disk. This should avoid conflicts when launching applications
+with <a href = "http://java.sun.com/products/javawebstart/">Java Web
+Start</a> that attempt to download a particular version of OpenGL for
+Java.
+
+</p>
+
+<h3>
+<a name = "HOWTO-JAVA-MANIPS">
+Incorporating Manips into a Java Program
+</a>
+</h3>
+
+<p>
+
+To use gleem's manipulators in a Java program:
+
+<ol>
+<li> Use the <code>GLEventListener</code> programming model in OpenGL
+     for Java rather than subclassing <code>GLCanvas</code> or any of
+     the other widget classes. gleem's ExaminerViewer, in particular,
+     relies on being able to add a <code>GLEventListener</code> to the
+     <code>GLDrawable</code> to which it is attached.
+<li> Register each <code>GLDrawable</code> with the ManipManager by
+     calling <code>ManipManager.registerWindow()</code> from within
+     your GLEventListener's <code>init</code> method.
+<li> If you choose not to allow the ManipManager to install
+     MouseListeners and MouseMotionListeners for a given window
+     (usually because you need to consume some of these events in your
+     application without their being processed by gleem; see the
+     ExaminerViewer for an example), call
+     <code>ManipManager.removeMouseListeners()</code> and then send
+     mouse motion, drag, and button events to gleem using
+     <code>ManipManager</code>'s <code>mouseMoved</code>,
+     <code>mouseDragged</code>, <code>mousePressed</code>, and
+     <code>mouseReleased</code> methods.
+<li> Register each manipulator in the windows you want it to be
+     visible by calling <code>ManipManager.showManipInWindow()</code>.
+<li> Add a call to <code>ManipManager.updateCameraParameters()</code>
+     to your <code>GLEventListener</code>'s <code>display</code>
+     method with parameters of your viewing frustum (forward and up
+     vectors, vertical FOV, image plane aspect ratio, horizontal and
+     vertical size of window). gleem currently only handles frusta
+     corresponding to symmetric truncated pyramids.
+<li> Add a call to <code>ManipManager.render()</code> to your
+     <code>display</code> method.
+
+</ol>
+
+</p>
+<p>
+
+Note that gleem's Java programming language APIs are more strict than
+the C++ versions about explicitly registering and unregistering
+windows. The Java platform's window system interface is inherently
+multithreaded and the added strictness should help ensure the
+correctness of applications using the library.
+
+</p>
+<p>
+
+You can then call methods such as <code>getTranslation()</code> and
+<code>getRotation()</code> on the above manipulator classes in, for
+example, your <code>display</code> method, and feed those values
+elsewhere. You can also register a motion listener via
+<code>Manip.addMotionListener()</code> which will be called each time
+the manipulator is moved.
+
+</p>
+<p>
+
+See the sources TestTranslate1.java, TestTranslate2.java, and
+TestHandleBox.java for specific, small examples of instantiating
+manipulators.
+
+</p>
+
+<h3>
+<a name = "HOWTO-JAVA-EXAMINER">
+Incorporating the Examiner Viewer
+</a>
+</h3>
+
+<p>
+
+The ExaminerViewer class implements trackball-style rotation,
+translation, and dollying of the scene. Its controls are similar to
+those of Open Inventor's Examiner Viewer; see the <a
+href="#UI-EXAMINER">user interface</a> section below for details.
+
+</p>
+<p>
+
+To use the ExaminerViewer in conjunction with the ManipManager:
+
+</p>
+<p>
+
+<ol>
+<li> Register the <code>GLDrawable</code> with the ManipManager. This
+     should generally be done within the <code>init</code> method of
+     your <code>GLEventListener</code>.
+<li> Instantiate an ExaminerViewer. The MouseButtonHelper class can be
+     used to determine how many mouse buttons are present.
+<li> Attach the ExaminerViewer to the drawable. Note that this must be
+     done after the drawable has been registered with the ManipManager.
+     At this stage a BSphereProvider, used during viewAll() operations,
+     must be specified.
+<li> (Recommended) Call the <code>viewAll</code> method on the viewer
+     to set it up for initial interaction.
+</ol>
+
+</p>
+<p>
+
+See TestExaminerViewer.java for an example which creates a HandleBoxManip
+inside of an ExaminerViewer.
+
+</p>
+
+<h3>
+<a name = "HOWTO-JAVA-MULTIWIN">
+Multiple Window and Multi-Threading Support
+</a>
+</h3>
+
+<p>
+
+As the Java platform's window system is inherently multithreaded, the
+Java version of gleem is necessarily mostly thread-safe. The
+ManipManager class is thread-safe, but individual manipulator
+instances are not. Multiple window support is handled through the
+ManipManager's <code>registerWindow</code>,
+<code>unregisterWindow</code>, <code>showManipInWindow</code>, and
+<code>removeManipFromWindow</code> methods.
+
+</p>
+
+<hr width="50%">
+
+<h2>
+<a name = "HOWTO-C++">
+How to Incorporate gleem Into C++ Programs
+</a>
+</h2>
+
+<h3>
+<a name = "HOWTO-C++-COMPILE">
+Compiling gleem for C++
+</a>
+</h3>
+
+<p>
+
+The C++ version of gleem was originally developed under SGI's Irix 6.5
+and later ported to Windows. The Unix Makefile is currently set up for
+SGI's CC and include directories. Type "make" in the gleem
+subdirectory to build the library and tests. You will need to set your
+LD_LIBRARY_PATH to, for example,
+/users/yourname/gleem-1.2/c++-impl/lib/iris before running any of the
+tests.
+
+</p>
+<p>
+
+Project files for Microsoft's Visual C++ are located in the
+subdirectory c++-impl/gleem/visualc .
+
+</p>
+<p>
+
+The sources should be quite portable and compilable with any recent
+C++ compiler. STL support is required and SGI's version of the STL is
+included in the distribution. By default gleem puts all of its
+datatypes into the namespace "gleem", but if your compiler doesn't
+support namespaces you can define the preprocessor variable
+GLEEM_NO_NAMESPACES (Namespace.h). If you port gleem to another
+platform, please consider making a cross-platform Makefile for gmake
+and submitting your work. The "machtype" script in the top-level
+directory may be useful for this purpose.
+
+</p>
+
+<h3>
+<a name = "HOWTO-C++-MANIPS">
+Incorporating Manips into a C++ Program
+</a>
+</h3>
+
+<p>
+
+To use gleem's manipulators in a C++ program using OpenGL and GLUT:
+
+<ol>
+<li> Add a call to <code>ManipManager::init()</code> to your
+     <code>main()</code>.  There must be an open window at this point
+     if you want the ManipManager to install its callbacks. (To
+     disable callback installation, call
+     <code>ManipManager::init(false)</code>.)
+<li> If you choose not to allow the ManipManager to install mouse
+     motion, passive motion, and mouse button callbacks (usually
+     because you need to consume certain kinds of events in your
+     application without their being processed by gleem; see the
+     ExaminerViewer and TestExaminerViewer for an example), you need
+     to call ManipManager's <code>mouseFunc</code>,
+     <code>motionFunc</code>, and <code>passiveMotionFunc</code>
+     methods at the end of your callbacks for events that should be
+     processed by gleem.
+<li> Make regular calls to
+     <code>ManipManager::updateCameraParameters()</code> with
+     parameters of your viewing frustum (forward and up vectors,
+     vertical FOV, image plane aspect ratio, horizontal and vertical
+     size of window). gleem currently only handles frusta
+     corresponding to symmetric truncated pyramids.
+<li> Add a call to <code>ManipManager::render()</code> to your display
+     callback.
+</ol>
+
+</p>
+<p>
+
+You can then call methods such as <code>getTranslation()</code> and
+<code>getRotation()</code> on the above manipulator classes in, for
+example, your GLUT render callback, and feed those values elsewhere.
+You can also register a motion callback via
+<code>Manip::addMotionCallback()</code> which will be called each time
+the manipulator is moved.
+
+</p>
+<p>
+
+See the sources TestTranslate1.cpp, TestTranslate2.cpp, and
+TestHandleBox.cpp for specific, small examples of instantiating
+manipulators.
+
+</p>
+
+<h3>
+<a name = "HOWTO-C++-EXAMINER">
+Incorporating the Examiner Viewer
+</a>
+</h3>
+
+<p>
+
+The ExaminerViewer class implements trackball-style rotation,
+translation, and dollying of the scene. Its controls are similar to
+those of Open Inventor's Examiner Viewer; see the <a
+href="#UI-EXAMINER">user interface</a> section below for details.
+
+</p>
+<p>
+
+To use the ExaminerViewer in conjunction with the ManipManager:
+
+</p>
+<p>
+
+<ol>
+<li> Instantiate an Examiner Viewer (i.e., <code>ExaminerViewer *viewer =
+new ExaminerViewer();</code>). This creates a new window internally and
+overrides mouse and motion callbacks.
+<li> Call <code>ManipManager::init(false);</code>. It isn't possible to
+re-install the ExaminerViewer's callbacks if they're overridden, so it's
+important not to let the ManipManager do so.
+<li> Set up the ManipManager as a mouse and motion delegate for the
+ExaminerViewer.
+<pre>
+  viewer->setMouseDelegate(ManipManager::mouseFunc);
+  viewer->setMotionDelegate(ManipManager::motionFunc);
+</pre>
+<li> To get highlighting of manips to work, set up the ManipManager's
+passive motion callback manually.
+<pre>
+  viewer->makeCurrent();
+  glutPassiveMotionFunc(ManipManager::passiveMotionFunc);
+</pre>
+<li> (Recommended) Give the ExaminerViewer a BSphereProvider so it can
+compute the bounding sphere of the scene, and call viewAll() before the
+first render. See TestExaminerViewer.cpp for an example of how you might
+compute a bounding sphere for a manipulator.
+<li> Add a call to <code>viewer->update();</code> before you begin drawing
+your geometry. This recomputes the ModelView and Projection matrices for
+the current rendering context. You should then be able to push matrices on
+top of the one loaded by the ExaminerViewer to effect a camera moving about
+the scene.
+</ol>
+
+</p>
+<p>
+
+See TestExaminerViewer.cpp for an example which creates a HandleBoxManip
+inside of an ExaminerViewer.
+
+</p>
+
+<h3>
+<a name = "HOWTO-MULTIWIN">
+Multiple Window and Multi-Threading Support (or Lack of)
+</a>
+</h3>
+
+<p>
+
+gleem supports rendering manipulators in multiple windows. See
+<code>ManipManager::windowCreated()</code>,
+<code>ManipManager::windowDestroyed()</code>,
+<code>ManipManager::addManipToWindow()</code>, and
+<code>ManipManager::removeManipFromWindow</code>. By default, manipulators
+are rendered in the window which was current at the time of their
+instantiation (determined via <code>glutGetWindow()</code>.) See
+<code>TestMultiWin.cpp</code> for an example of rendering the same
+manipulator into two windows.
+
+</p>
+<p>
+
+<b>The C++ version of gleem is not thread-safe</b>. You should not
+attempt to instantiate or use gleem objects in more than one
+thread. Further, gleem assumes it is valid to make OpenGL calls, so
+the library will probably not work properly in a multiprocessing
+environment like SGI's Performer without modification.
+
+</p>
+
+<hr width="50%">
+
+<h2>
+<a name = "UI">
+User Interface
+</a>
+</h2>
+
+<h3>
+<a name = "UI-TRANSLATE12">
+Translate1Manip and Translate2Manip User Interface
+</a>
+</h3>
+
+<p>
+
+Click and drag to cause motion along a line or in a plane.
+
+</p>
+
+<h3>
+<a name = "UI-HANDLEBOX">
+HandleBoxManip User Interface
+</a>
+</h3>
+
+<p>
+
+The HandleBoxManipulator contains a box with six faces. Clicking and
+dragging on any of these six faces causes translational motion in the plane
+parallel to the face.
+
+</p>
+<p>
+
+Each of the six rotation handles, which lie above the cube's faces, can be
+used to rotate the manipulator about two possible axes. At the start of a
+drag motion, one of the two rotation axes is chosen: the one most parallel
+to the viewing direction. If you visualize the two perpendicular planes
+which go through the handle, the center of the cube, and the three other
+rotation handles, the plane in which rotation occurs is the one which is
+facing the camera the most when the drag is initiated.
+
+</p>
+<p>
+
+Scaling is performed with the eight corner handles. Clicking and dragging
+these handles causes aspect ratio-preserving scaling about the origin of
+the cube. Shift-clicking and dragging allows stretching of the cube about
+one of two axes. The two possible axes are chosen when the handle is first
+shift-clicked, and are chosen to be the principal axes of the face adjacent
+to the handle which most faces the camera. Scaling along either of these
+two axes may be the result of the drag; which of the two is chosen is
+determined using a "snap-to" paradigm, and can change during the drag.
+
+</p>
+
+<h3>
+<a name = "UI-EXAMINER">
+ExaminerViewer User Interface
+</a>
+</h3>
+
+<p>
+
+The ExaminerViewer behaves similarly to Inventor's Examiner Viewer. It
+grabs all drag motions when the Alt or Meta keys are depressed. The
+ExaminerViewer has a conceptual "focal point" which is always defined
+as being the focal distance directly in front of the camera.
+
+</p>
+<p>
+
+Drag motions with Alt/Meta key depressed:
+<ul>
+<li> Button 1: Rotate about focal point
+<li> Button 2: Translate in plane parallel to image plane. Note that this
+causes subsequent rotations to be performed about a point which is likely
+not to be the precise center of the scene.
+<li> Buttons 1+2: Dolly in/out in direction perpendicular to image plane.
+This motion increases or decreases the focal distance depending on the
+dollying direction.
+</ul>
+
+</p>
+<p>
+
+Calling the viewAll() method re-positions (but does not re-orient) the
+ExaminerViewer so the bounding sphere given by the BSphereProvider is
+contained entirely within the viewing frustum. The focal distance is reset
+to be the distance between the camera and the center of the bounding
+sphere.
+
+</p>
+
+<hr width="50%">
+
+<h2>
+<a name = "DEVELOPER">
+Developer Information
+</a>
+</h2>
+
+<h3>
+<a name = "DOCUMENTATION">
+Per-Class Documentation
+</a>
+</h3>
+
+<p>
+
+gleem's javadoc documentation can be <a href =
+"http://www.media.mit.edu/~kbrussel/gleem/doc/javadoc/">browsed
+on-line</a>.
+
+</p>
+
+<h3>
+<a name = "OVERVIEW">
+Library Overview
+</a>
+</h3>
+
+<p>
+
+Manipulators contain Manipulator Parts. The ManipPart hierarchy is
+divided into two sections, one containing triangle-based pieces of
+manipulators and one which contains grouping nodes (analogues to Group
+and Transform nodes). This is gleem's scene graph mechanism. A
+warning: in the C++ version, shared instancing of "nodes" (ManipParts)
+in this scene graph is not allowed (since reference counting is not
+implemented). The ManipManager keeps track of all instantiated
+manipulators and handles the picking mechanism as well as rendering.
+
+</p>
+<p>
+
+The Manip base class only implements a minimal interface; it is
+intended that you refer to manipulators through a pointer to the
+concrete type rather than the abstract Manip type. The simple
+manipulators (Translate1Manip, Translate2Manip) contain
+replaceGeometry() methods so you can customize the draggers with
+whatever geometry you like. It is not so simple to customize a more
+complex manipulator like the HandleBoxManip, so it contains no such
+method.
+
+</p>
+<p>
+
+Each manipulator understands its constraints and implements its drag()
+method from scratch. Clearly there is some commonality between the
+Translate2Dragger and the translation functionality of the HandleBoxManip.
+However, this commonality has not been abstracted into a set of classes
+like Inventor's projectors. Instead there are a few geometrical classes
+(Line, Plane, PlaneUV) which encapsulate such functionality as ray casting
+and point projection, and the manipulators determine how to use this
+information based on what manipulator part was selected and the current
+configuration of the manipulator.
+
+</p>
+<p>
+
+The linear algebra gleem uses is quite simple and should be accessible to
+anyone with anyone who has taken an undergraduate linear algebra course.  I
+encourage you to experiment with more sophisticated algorithms for the drag
+mechanisms.
+
+</p>
+<p>
+
+Recommended texts:
+<ul>
+<li> Gilbert Strang, <u>Introduction to Linear Algebra</u>, Wellesley, MA:
+Wellesley-Cambridge Press, 1993
+<li> James D. Foley, Andries van Dam, Steven K. Feiner, and John F. Hughes,
+<u>Computer Graphics: Principles and Practice</u>, Reading, MA:
+Addison-Wesley, 1992
+</ul>
+
+</p>
+
+<hr width="50%">
+
+<h2>
+<a name = "LICENSING">
+Licensing Terms
+</a>
+</h2>
+
+<p>
+
+gleem is distributed under the <a href = "LICENSE.txt">GNU Lesser
+General Public License</a>, version 2.1, or any later version.
+
+</p>
+<p>
+
+gleem includes a copy of SGI's STL implementation. Here is the copyright
+notice from this library:
+
+<pre>
+/*
+ *
+ * Copyright (c) 1994
+ * Hewlett-Packard Company
+ *
+ * Permission to use, copy, modify, distribute and sell this software
+ * and its documentation for any purpose is hereby granted without fee,
+ * provided that the above copyright notice appear in all copies and
+ * that both that copyright notice and this permission notice appear
+ * in supporting documentation.  Hewlett-Packard Company makes no
+ * representations about the suitability of this software for any
+ * purpose.  It is provided "as is" without express or implied warranty.
+ *
+ *
+ * Copyright (c) 1996
+ * Silicon Graphics Computer Systems, Inc.
+ *
+ * Permission to use, copy, modify, distribute and sell this software
+ * and its documentation for any purpose is hereby granted without fee,
+ * provided that the above copyright notice appear in all copies and
+ * that both that copyright notice and this permission notice appear
+ * in supporting documentation.  Silicon Graphics makes no
+ * representations about the suitability of this software for any
+ * purpose.  It is provided "as is" without express or implied warranty.
+ */
+</pre>
+
+</p>
+
+<hr width="50%">
+
+<h2>
+<a name = "FAQ">
+Frequently Asked Questions
+</a>
+</h2>
+
+<p>
+Q: Why don't the manipulators show up in the right place in my application?
+(Or, why can't I drag them?)
+</p>
+
+<p>
+
+A: gleem expects the following from the rendering state at the time
+you call ManipManager's <code>render</code> method:
+
+<ul>
+<li> Lighting is enabled and at least one light is on
+<li> Textures are disabled
+<li> The ModelView matrix stack contains only the camera translation and
+orientation, and the Projection matrix a perspective projection matrix.
+</ul>
+
+The latter is likely to be the problem. gleem expects to be able to
+render its manipulators in world coordinates, and the camera
+parameters you give the library must correspond to the current state
+of the ModelView and Projection matrices. See
+<code>TestExaminerViewer.java</code> or
+<code>TestExaminerViewer.cpp</code> for an example of how an
+application using gleem might be structured.
+
+</p>
+
+<hr width="50%">
+
+<h2>
+<a name = "PROBLEMS">
+Known Problems
+</a>
+</h2>
+
+<p>
+
+The event handling code is inefficient in the case of multiple events per
+render, which typically occurs when there are many manipulators in the
+scene and rendering is slow. The mouse motion and passive motion event
+handlers in <code>ManipManager</code> should be restructured to compress
+the event input stream into salient events like "highlighted here" (after a
+stream of passive motion events) and "dragged here" (after multiple mouse
+drag events), the actual work being done in render(). This will probably
+require tricky state management in <code>ManipManager</code>. Perhaps
+render() should be renamed update() since it will be doing more work.
+
+</p>
+
+<hr width="50%">
+
+<h2>
+<a name = "LINKS">
+Interesting Links
+</a>
+</h2>
+
+<ul>
+<li> SGI's <a href = "http://oss.sgi.com/projects/inventor/">Open
+Inventor</a> has recently been made available under the LGPL.
+<li> Mark Kilgard's <a href =
+"http://www.opengl.org/developers/documentation/glut.html">GLUT</a>:
+an abstraction layer allowing development of window system-independent
+C and C++ OpenGL programs
+<li> Brian Paul's <a href = "http://www.mesa3d.org/">Mesa</a>: a free
+     OpenGL clone
+<li> Eric Powers's <a href =
+"http://mrpowers.com/Apprentice/">Apprentice</a>: a free (though
+incomplete) Open Inventor clone
+<li> <a href = "http://www.vrs3d.org/">VRS</a>: a large and free 3D
+library
+</ul>
+
+</p>
+
+<hr width="50%">
+
+<h2>
+<a name = "HISTORY">
+Version History
+</a>
+</h2>
+
+<p>
+
+<ul>
+<li> Version 1.2.1 - February 4, 2002
+<ul>
+<li> Fixed bug in ExaminerViewer with Sun keyboards
+</ul>
+<li> Version 1.2 - January 27, 2002
+<ul>
+<li> Ported to Java via OpenGL for Java
+</ul>
+<li> Version 1.1 - April 30, 1999
+<ul>
+<li> Implemented scaling for and redesigned HandleBoxManip
+<li> Ported to Windows
+<li> Modified rendering code to use glColorMaterial
+</ul>
+<li> Version 1.0 - November 23, 1998
+<ul>
+<li> First public release
+</ul>
+</ul>
+
+</p>
+
+<hr>
+
+<i> <a href="http://www.media.mit.edu/~kbrussel">Kenneth B. Russell</a> -
+<a href = "mailto:kbrussel@alum.mit.edu">kbrussel@alum.mit.edu</a> </i>
+<h6>$Id: index.html,v 1.6 2002/02/05 06:50:20 kbr Exp $</h6>
+
+</body>
+</html>
